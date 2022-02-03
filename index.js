@@ -4,16 +4,8 @@ const NUMBER_REGEXP_STRING = '\\d+(?:\\.\\d+)?'
 
 const OPERAND_REGEXP = new RegExp(NUMBER_REGEXP_STRING)
 
-const NUMBER_FROM_START_REGEXP = new RegExp(`^${NUMBER_REGEXP_STRING}`)
-
-const PLUS_STRING = ' + '
-
 export const Operator = {
   PLUS: '+',
-}
-
-export function add(a, b) {
-  return a + b
 }
 
 export function parse(expression) {
@@ -50,15 +42,6 @@ function parseOperator(operator) {
     return Operator.PLUS
   } else {
     throw new Error('Unknown operator')
-  }
-}
-
-function extractNumberFromTheStart(string) {
-  const numberMatch = NUMBER_FROM_START_REGEXP.exec(string)
-  if (numberMatch) {
-    return numberMatch[0]
-  } else {
-    throw new Error(`Unexpected expression: "${ string }"`)
   }
 }
 
