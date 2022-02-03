@@ -1,4 +1,4 @@
-const EXPRESSION_REGEXP = /^\(?([^\(]+) ([\+]) (.+)\)?$/
+const EXPRESSION_REGEXP = /^\(?([^\(]+) ([\+\-\*\/]) (.+)\)?$/
 
 const NUMBER_REGEXP_STRING = '\\d+(?:\\.\\d+)?'
 
@@ -6,6 +6,9 @@ const OPERAND_REGEXP = new RegExp(NUMBER_REGEXP_STRING)
 
 export const Operator = {
   PLUS: '+',
+  MINUS: '-',
+  MULTIPLIED_BY: '*',
+  DIVIDED_BY: '/'
 }
 
 export function isValidExpression(expression) {
@@ -47,10 +50,17 @@ function parseOperand(operand) {
 }
 
 function parseOperator(operator) {
-  if (operator === '+') {
-    return Operator.PLUS
-  } else {
-    throw new Error('Unknown operator')
+  switch (operator) {
+    case '+':
+      return Operator.PLUS
+    case '-':
+      return Operator.MINUS
+    case '*':
+      return Operator.MULTIPLIED_BY
+    case '/':
+      return Operator.DIVIDED_BY
+    default:
+      throw new Error('Unknown operator')
   }
 }
 
