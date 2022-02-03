@@ -8,6 +8,15 @@ export const Operator = {
   PLUS: '+',
 }
 
+export function isValidExpression(expression) {
+  try {
+    parse(expression)
+  } catch (error) {
+    return false
+  }
+  return true
+}
+
 export function parse(expression) {
   return new Tree(parseSubexpression((expression)))
 }
