@@ -29,6 +29,13 @@ describe('parse', () => {
     )
   })
 
+  it('parses "1 % 2"', () => {
+    const tree = parse('1 % 2')
+    expect(tree).toEqual(
+      new Tree(new OperationNode(new OperandNode(1), Operator.MODULO, new OperandNode(2)))
+    )
+  })
+
   it('parses "1 + 2 + 3"', () => {
     const tree = parse('1 + 2 + 3')
     expect(tree).toEqual(
